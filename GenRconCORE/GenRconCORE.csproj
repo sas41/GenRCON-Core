@@ -10,6 +10,10 @@
     <Description>GenRCON is a Remote Console Software compliant with SourceRCON pioneered by Valve.</Description>
     <NeutralLanguage>en</NeutralLanguage>
     <PreBuildEvent />
+    <PackageProjectUrl>https://github.com/sas41/GenRCON-Core</PackageProjectUrl>
+    <RepositoryType>Git</RepositoryType>
+    <RepositoryUrl>https://github.com/sas41/GenRCON-Core.git</RepositoryUrl>
+    <PackageIconUrl>https://github.com/sas41/GenRCON-Core/blob/master/Icon/GENRCON_ICON.png?raw=true</PackageIconUrl>
   </PropertyGroup>
 
   <ItemGroup>

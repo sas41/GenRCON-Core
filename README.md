@@ -4,6 +4,8 @@ Generic Remote Console Client, SourceRCON compliant
 
 Powered by [CoreRCON](https://github.com/ScottKaye/CoreRCON)
 
+# [Download <img src="https://github.com/sas41/GenRCON-Core/blob/master/Icon/GENRCON_ICON.png?raw=true" width="48">](https://github.com/sas41/GenRCON-Core/releases)
+
 # Usage:
 
 You can simply run the program and it will ask you for the address, port and password.

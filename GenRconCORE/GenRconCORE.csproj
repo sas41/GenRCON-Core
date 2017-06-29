@@ -13,11 +13,18 @@
     <PackageProjectUrl>https://github.com/sas41/GenRCON-Core</PackageProjectUrl>
     <RepositoryType>Git</RepositoryType>
     <RepositoryUrl>https://github.com/sas41/GenRCON-Core.git</RepositoryUrl>
+    <RuntimeIdentifiers>win10-x64;osx.10.11-x64</RuntimeIdentifiers>
     <PackageIconUrl>https://github.com/sas41/GenRCON-Core/blob/master/Icon/GENRCON_ICON.png?raw=true</PackageIconUrl>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="CoreRCON" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update=".dockerignore">
+      <DependentUpon>Dockerfile</DependentUpon>
+    </None>
   </ItemGroup>
 
 </Project>

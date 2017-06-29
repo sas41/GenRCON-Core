@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <Company />
+    <PackageId>GenRCON</PackageId>
+    <Authors>GenRCON</Authors>
+    <Product>GenRCON</Product>
+    <Description>GenRCON is a Remote Console Software compliant with SourceRCON pioneered by Valve.</Description>
+    <NeutralLanguage>en</NeutralLanguage>
+    <PreBuildEvent />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CoreRCON" Version="2.0.0" />
+  </ItemGroup>
+
+</Project>

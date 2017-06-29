@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "GenRconCORE": {
+      "commandName": "Project",
+      "commandLineArgs": "-a asp.ru-se.com -p 7788 -password \"themachineiswatchingoverus\""
+    }
+  }
+}

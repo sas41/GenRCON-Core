@@ -20,3 +20,5 @@ There is NO default port!!!
 
 -pw or -password MyPassword
 You can use quatation marks if you're paranoid!
+
+You can use "genrcon quit" to end your session!

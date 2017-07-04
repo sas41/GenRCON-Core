@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Net;
-using CoreRCON;
-using CoreRCON.Parsers.Standard;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace GenRconCORE
@@ -9,26 +7,47 @@ namespace GenRconCORE
     class Program
     {
         static GenRCON grcon = new GenRCON();
+        static bool connected = false;
+        static bool waiting = true;
 
         internal static void Main(string[] args)
         {
             Initialize(args);
+
             var task = Task.Run(async () =>
             {
-                while (true)
+                while (waiting)
+                {
+                    Thread.Sleep(100);
+                }
+
+                while (connected)
                 {
                     Console.Write("GenRCON: ");
-                   string message = Console.ReadLine();
-                    if (message == "genrcon quit")
+
+                    string message = Console.ReadLine();
+
+                    if (message == "genrcon disconnect")
+                    {
+                        //UseInteractiveMode();
+                    }
+                    else if (message == "genrcon quit")
                     {
                         break;
                     }
-                    string reply = await grcon.Send(message);
-                    Console.WriteLine(Environment.NewLine + reply + Environment.NewLine);
+                    else
+                    { 
+                        string reply = await grcon.Send(message);
+                        Console.WriteLine(Environment.NewLine + reply + Environment.NewLine);
+                    }
                 }
+
             });
 
             task.GetAwaiter().GetResult();
+
+            Console.Write(Environment.NewLine + "End of Session, Press any key to continue...");
+            ConsoleKeyInfo tempvar = Console.ReadKey();
         }
         
         static void Initialize(string[] args)
@@ -45,9 +64,8 @@ namespace GenRconCORE
             }
         }
 
-        static void UseCommandLineArguments(string[] args)
+        static async void UseCommandLineArguments(string[] args)
         {
-
             int address = 0, port = 0, password = 0;
 
             for (int i = 0; i < args.Length; i++)
@@ -62,13 +80,20 @@ namespace GenRconCORE
                     case ("-pw"): password = i + 1; break;
                 }
             }
+            connected = await grcon.Connect(args[address], int.Parse(args[port]), args[password]);
 
-            grcon.ResolveHostname(args[address], int.Parse(args[port]), args[password]);
-
-            Console.WriteLine("Connected to "+ args[address] + ":" + args[port]);
+            if (connected)
+            {
+                Console.WriteLine("Connected to " + args[address] + ":" + args[port]);
+            }
+            else
+            {
+                Console.WriteLine("Cannot reach target address!" + Environment.NewLine + "Check your internet connection and/or the target address!");
+            }
+            waiting = false;
         }
 
-        static void UseInteractiveMode()
+        static async void UseInteractiveMode()
         {
             Console.Write("Enter Address: ");
             string address = Console.ReadLine();
@@ -77,9 +102,18 @@ namespace GenRconCORE
             Console.Write("Enter Password: ");
             string password = Console.ReadLine();
 
-            grcon.ResolveHostname(address, port, password);
+            connected = await grcon.Connect(address, port, password);
 
-            Console.WriteLine("Connected to " + address + ":" + port);
+            if (connected)
+            {
+                Console.WriteLine("Connected to " + address + ":" + port);
+            }
+            else
+            {
+                Console.WriteLine("Cannot reach target address!" + Environment.NewLine + "Check your internet connection and/or the target address!");
+            }
+
+            waiting = false;
         }
     }
 }

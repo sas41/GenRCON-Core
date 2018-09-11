@@ -13,7 +13,7 @@ You can simply run the program and it will ask you for the address, port and pas
 Alternatively you can use launch parameters such as:
 
 -a or -address servers.mydomain.com
-You can enter an IP address instead of a domain name ofcourse.
+You can enter an IP address instead of a domain name of course.
 
 -p or -port 12345
 There is NO default port!!!
